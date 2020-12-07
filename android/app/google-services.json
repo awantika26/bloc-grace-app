@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "461794791335",
+    "firebase_url": "https://grace-98dff.firebaseio.com",
+    "project_id": "grace-98dff",
+    "storage_bucket": "grace-98dff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:461794791335:android:67beb8f35609bbf4b4b082",
+        "android_client_info": {
+          "package_name": "com.example.grace_app_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "461794791335-lmcfbo9ojobe1ga6c395q3pr6ok0qemi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcUS2w4kU65hqSP0-7s9M-tAUjpfSBluk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "461794791335-lmcfbo9ojobe1ga6c395q3pr6ok0qemi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
