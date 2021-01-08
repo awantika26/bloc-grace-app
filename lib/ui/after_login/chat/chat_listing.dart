@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
@@ -16,8 +17,7 @@ class ChatListingScreen extends StatefulWidget {
 
 class _ChatListingScreenState extends State<ChatListingScreen> {
   Firestore _firestore = Firestore.instance;
-  Map _arguments;
-  var _myimage, _text, _username, _time, content;
+  var _myimage, _text, _username, _time, content, userId;
   DateTime _dateTime;
 
   _getdate(DateTime input) {
@@ -26,14 +26,26 @@ class _ChatListingScreenState extends State<ChatListingScreen> {
     return _time;
   }
 
-  Widget chatlist(BuildContext context) {
-    _arguments = ModalRoute.of(context).settings.arguments as Map;
+  Future _getCurrentID() async {
+    try {
+      final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+      userId = (await _firebaseAuth.currentUser()).uid;
+    } catch (e) {}
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getCurrentID();
+  }
+
+  Widget chatlist(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       stream: _firestore
-          .collection('messages')
-          .document(_arguments['groupchatid'])
-          .collection(_arguments['groupchatid'])
+          .collection('inbox')
+          .document(userId)
+          .collection(userId)
           .orderBy('timestamp', descending: true)
           .snapshots(),
       builder: (context, snapshot) {
@@ -101,6 +113,23 @@ class _ChatListingScreenState extends State<ChatListingScreen> {
                 ),
               ),
               centerTitle: true,
+              actions: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(top: 30.0, right: 10),
+                  child: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(
+                        context,
+                        AppRoutes.home,
+                      );
+                    },
+                    child: Icon(
+                      Icons.home,
+                      color: AppColor.textwhite,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           backgroundColor: AppColor.textwhite,

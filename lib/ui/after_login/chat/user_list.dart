@@ -71,9 +71,10 @@ class _UserListingScreenState extends State<UserListingScreen> {
                     child: Column(children: <Widget>[
                       Center(
                         child: Padding(
-                          padding: const EdgeInsets.all(20.0),
+                          padding: const EdgeInsets.only(
+                              top: 20.0, left: 20, right: 20),
                           child: Container(
-                            height: MediaQuery.of(context).size.height / 8,
+                            height: MediaQuery.of(context).size.height / 10,
                             width: MediaQuery.of(context).size.width / 1.2,
                             child: AppTextFromField(
                                 controller: _searchController,
@@ -88,7 +89,10 @@ class _UserListingScreenState extends State<UserListingScreen> {
                                   },
                                 ),
                                 prefixicon: FlatButton(
-                                  child: Icon(Icons.search),
+                                  child: Icon(
+                                    Icons.search,
+                                    color: AppColor.blue,
+                                  ),
                                   onPressed: null,
                                 ),
                                 onFieldSubmitted: (val) {
@@ -131,23 +135,26 @@ class _UserListingScreenState extends State<UserListingScreen> {
                                                 });
                                           },
                                           child: document['id'] != _id
-                                              ? ListTile(
-                                                  leading: myimage != null
-                                                      ? CircleAvatar(
-                                                          radius: 35,
-                                                          backgroundImage:
-                                                              AssetImage(
-                                                                  myimage),
-                                                        )
-                                                      : CircleAvatar(
-                                                          radius: 35,
-                                                          backgroundImage:
-                                                              AssetImage(AppAssets
-                                                                  .faceimage1),
-                                                        ),
-                                                  title: new Text(
-                                                      document['username']),
-                                                )
+                                              ? Padding(
+                                                  padding:
+                                                      const EdgeInsets.all(8.0),
+                                                  child: ListTile(
+                                                    leading: myimage != null
+                                                        ? CircleAvatar(
+                                                            radius: 35,
+                                                            backgroundImage:
+                                                                AssetImage(
+                                                                    myimage),
+                                                          )
+                                                        : CircleAvatar(
+                                                            radius: 35,
+                                                            backgroundImage:
+                                                                AssetImage(AppAssets
+                                                                    .faceimage1),
+                                                          ),
+                                                    title: new Text(
+                                                        document['username']),
+                                                  ))
                                               : Container(
                                                   height: 0,
                                                 ));

@@ -35,7 +35,7 @@ class AppRoutes {
   static const String editjournal = '/editjournal';
   static const String myprofile = '/myprofile';
   static const String editprofile = '/editprofile';
-  static const String updatedjournal = '/updatedjournal';
+
   static const String chat = '/chat';
   static const String userlist = '/userlist';
   static const String chatlisting = '/chatlisting';
@@ -54,7 +54,6 @@ class AppRoutes {
     journal: (BuildContext context) => JournalScreen(),
     addjournal: (BuildContext context) => AddJournalScreen(),
     editjournal: (BuildContext context) => EditJournalScreen(),
-    updatedjournal: (BuildContext context) => UpdatedJournalScreen(),
     welcome: (BuildContext context) => WelcomeScreen(),
     myprofile: (BuildContext context) => MyProfile(),
     editprofile: (BuildContext context) => EditProfile(),

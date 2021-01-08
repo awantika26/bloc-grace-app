@@ -13,6 +13,10 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+
+
+ 
+
   Widget chat(BuildContext context) {
     return Padding(
         padding: EdgeInsets.only(top: 0),
@@ -88,23 +92,15 @@ class _ChatScreenState extends State<ChatScreen> {
           appBar: AppBar(
             elevation: 0,
             backgroundColor: AppColor.backgroundcolor,
-            title: Center(
-              child: Text(
-                AppStrings.Chat,
-                style: TextStyle(
-                    fontSize: 25,
-                    color: AppColor.textwhite,
-                    fontWeight: FontWeight.bold),
-              ),
+            title: Text(
+              AppStrings.Chat,
+              style: TextStyle(
+                  fontSize: 25,
+                  color: AppColor.textwhite,
+                  fontWeight: FontWeight.bold),
             ),
-            leading: GestureDetector(
-                child: Icon(Icons.home),
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    AppRoutes.home,
-                  );
-                }),
+            centerTitle: true,
+            leading: Text(''),
           ),
           backgroundColor: AppColor.backgroundcolor,
           body: chat(context)),

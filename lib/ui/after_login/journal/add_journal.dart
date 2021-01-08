@@ -126,7 +126,7 @@ class _AddJournalScreenState extends State<AddJournalScreen> {
         try {
           DatabaseService().createJournal(
               _titleController.text, _descriptionController.text, id);
-          Navigator.pushReplacementNamed(context, AppRoutes.updatedjournal);
+          Navigator.pushReplacementNamed(context, AppRoutes.journal);
         } catch (e) {
           print(e);
         }

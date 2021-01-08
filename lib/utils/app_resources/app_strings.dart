@@ -7,10 +7,11 @@ class AppStrings {
   static const String forgettext1 = 'Forgot Password ?';
 
   static const String namefieldtext = "Name";
+  static const String pages = '5 of 14 pages';
   static const String typing = 'Start typing..';
   static const String nouser = 'No user Found';
   static const String Loading = "Loading....";
-  static const String searchuser = 'search user..';
+  static const String searchuser = 'Search';
   static const String verifyemail = "please verify your email!";
   static const String emailfieldtext = "Email";
   static const String passwordfieldtext = "Password";

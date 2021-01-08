@@ -131,6 +131,10 @@ class _ChatOngoingScreenState extends State<ChatOngoingScreen> {
             await transaction.set(ref1, {
               'chatroomId': groupchatId,
               'anotheruserid': arguments['id'],
+              'content': message,
+              'timestamp': DateTime.now(),
+              'anotherusername': arguments['username'],
+              'anotheruserimage': arguments['image']
             });
           });
           setState(() {
@@ -275,10 +279,17 @@ class _ChatOngoingScreenState extends State<ChatOngoingScreen> {
             ),
             actions: <Widget>[
               Padding(
-                padding: const EdgeInsets.only(top: 30.0, right: 170),
+                  padding: const EdgeInsets.only(top: 20.0, right: 0),
+                  child: CircleAvatar(
+                    radius: 35,
+                    backgroundImage: AssetImage(arguments['image']),
+                  )),
+              Padding(
+                padding: const EdgeInsets.only(top: 30.0, right: 200),
                 child: Text(
                   arguments['username'] ?? " ",
-                  style: TextStyle(color: AppColor.textblack),
+                  style: TextStyle(
+                      color: AppColor.textblack, fontWeight: FontWeight.bold),
                 ),
               ),
             ],

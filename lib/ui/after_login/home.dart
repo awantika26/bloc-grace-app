@@ -5,6 +5,7 @@ import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:grace_app_project/services/database.dart';
+import 'package:grace_app_project/ui/after_login/journal/journal.dart';
 import 'package:grace_app_project/utils/app_resources/app_colors.dart';
 import 'package:grace_app_project/utils/app_resources/app_images.dart';
 import 'package:grace_app_project/utils/app_resources/app_routes.dart';
@@ -17,12 +18,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  var _imageurl, _photo, _username, _picture, _name, _length;
+  var _imageurl, _photo, _username, _picture, _name, _length, _journallength;
 
   @override
   void initState() {
     _getCurrentUser();
     _getDocs();
+    _getJournal();
     super.initState();
   }
 
@@ -53,6 +55,21 @@ class _HomeScreenState extends State<HomeScreen> {
         .getDocuments();
     for (int i = 0; i < querySnapshot.documents.length; i++) {
       _length = querySnapshot.documents.length;
+    }
+  }
+
+  Future _getJournal() async {
+    try {
+      final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+      var id = (await _firebaseAuth.currentUser()).uid;
+      QuerySnapshot querySnapshot = await Firestore.instance
+          .collection('journal')
+          .document(id)
+          .collection('user_journal')
+          .getDocuments();
+      _journallength = querySnapshot.documents.length;
+    } catch (e) {
+      return e.message;
     }
   }
 
@@ -110,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColor.blue,
                 textColor: AppColor.textwhite,
                 onPressed: () {
-                  Navigator.pushNamed(context, AppRoutes.chat);
+                  Navigator.pushNamed(context, AppRoutes.userlist);
                 },
                 child: Text(
                   AppStrings.chatwith,
@@ -315,8 +332,11 @@ class _HomeScreenState extends State<HomeScreen> {
                           borderRadius: new BorderRadius.circular(30.0)),
                       highlightedBorderColor: AppColor.blue,
                       onPressed: () {
-                        Navigator.pushNamed(
-                            context, AppRoutes.underdevelopment);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => JournalScreen()),
+                        );
                       },
                       child: Row(
                         children: <Widget>[
@@ -350,7 +370,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         borderRadius: new BorderRadius.circular(30.0)),
                     highlightColor: AppColor.blue,
                     onPressed: () {
-                      Navigator.pushNamed(context, AppRoutes.underdevelopment);
+                      Navigator.pushNamed(context, AppRoutes.userlist);
                     },
                     child: Text(
                       AppStrings.Start,

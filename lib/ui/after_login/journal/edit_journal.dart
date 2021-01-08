@@ -68,7 +68,7 @@ class _EditJournalScreenState extends State<EditJournalScreen> {
 
           _databaseService.updateJournal(arguments['id'], _description);
 
-          Navigator.pushNamed(context, AppRoutes.updatedjournal);
+          Navigator.pushNamed(context, AppRoutes.journal);
         } catch (e) {}
       }
     } else {
@@ -86,81 +86,93 @@ class _EditJournalScreenState extends State<EditJournalScreen> {
       onTap: () {
         FocusScope.of(context).requestFocus(_blankfocusnode);
       },
-      child: SingleChildScrollView(
-        child: Padding(
-            padding: EdgeInsets.all(30),
-            child: ClipRRect(
-              borderRadius: new BorderRadius.circular(20),
-              child: Center(
-                child: Container(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    color: AppColor.textwhite,
-                    child: Column(
-                      children: <Widget>[
-                        Row(
+      child: Column(
+        children: <Widget>[
+          SingleChildScrollView(
+            child: Padding(
+                padding:
+                    EdgeInsets.only(top: 10, left: 30, right: 30, bottom: 20),
+                child: ClipRRect(
+                  borderRadius: new BorderRadius.circular(20),
+                  child: Center(
+                    child: Container(
+                        height: MediaQuery.of(context).size.height / 1.3,
+                        width: MediaQuery.of(context).size.width,
+                        color: AppColor.textwhite,
+                        child: Column(
                           children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Icon(
-                                Icons.calendar_today,
-                                color: AppColor.blue,
-                              ),
-                            ),
-                            Text(
-                              arguments['datetime'] ?? " -",
-                              style: TextStyle(color: AppColor.textgrey),
-                            )
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 200.0),
-                          child: Text(
-                            AppStrings.Description,
-                            style: TextStyle(color: AppColor.textgrey),
-                          ),
-                        ),
-                        _edit == false
-                            ? Expanded(
-                                child: Padding(
+                            Row(
+                              children: <Widget>[
+                                Padding(
                                   padding: const EdgeInsets.all(20.0),
-                                  child: SingleChildScrollView(
-                                    child: Text(
-                                      arguments['description'] ?? " ",
-                                      style:
-                                          TextStyle(color: AppColor.textblack),
-                                      textAlign: TextAlign.justify,
-                                    ),
+                                  child: Icon(
+                                    Icons.calendar_today,
+                                    color: AppColor.blue,
                                   ),
                                 ),
-                              )
-                            : Form(
-                                key: _formKey,
-                                autovalidate: _autoValidate,
-                                child: Column(children: <Widget>[
-                                  Center(
-                                    child: Container(
-                                      height:
-                                          MediaQuery.of(context).size.height /
-                                              2,
-                                      width: MediaQuery.of(context).size.width,
-                                      child: TextFormField(
-                                        controller: _descriptionController,
-                                        validator: AppMethods.validatetext,
-                                        textInputAction:
-                                            TextInputAction.newline,
-                                        maxLines: 2000,
-                                        onSaved: (val) {
-                                          _description = val;
-                                        },
+                                Text(
+                                  arguments['datetime'] ?? " -",
+                                  style: TextStyle(color: AppColor.blue),
+                                )
+                              ],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 200.0),
+                              child: Text(
+                                AppStrings.Description,
+                                style: TextStyle(color: AppColor.textgrey),
+                              ),
+                            ),
+                            _edit == false
+                                ? Expanded(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: SingleChildScrollView(
+                                        child: Text(
+                                          arguments['description'] ?? " ",
+                                          style: TextStyle(
+                                              color: AppColor.textblack),
+                                          textAlign: TextAlign.justify,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ]))
-                      ],
-                    )),
-              ),
-            )),
+                                  )
+                                : Form(
+                                    key: _formKey,
+                                    autovalidate: _autoValidate,
+                                    child: Column(children: <Widget>[
+                                      Center(
+                                        child: Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              2,
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          child: TextFormField(
+                                            controller: _descriptionController,
+                                            validator: AppMethods.validatetext,
+                                            textInputAction:
+                                                TextInputAction.newline,
+                                            maxLines: 2000,
+                                            onSaved: (val) {
+                                              _description = val;
+                                            },
+                                          ),
+                                        ),
+                                      ),
+                                    ])),
+                          ],
+                        )),
+                  ),
+                )),
+          ),
+          Text(
+            AppStrings.pages,
+            style: TextStyle(
+                color: AppColor.textwhite, fontWeight: FontWeight.bold),
+          ),
+        ],
       ),
     );
   }

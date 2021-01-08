@@ -14,6 +14,7 @@ class AppTextFromField extends StatelessWidget {
   final TextEditingController controller;
   final FocusNode focusNode;
   final ValueChanged onFieldSubmitted;
+  final VoidCallback onEditingCompleted;
   final FormFieldValidator<String> validator;
   final FormFieldSetter<String> onSaved;
   final bool autofocus;
@@ -33,6 +34,7 @@ class AppTextFromField extends StatelessWidget {
     this.controller,
     this.focusNode,
     this.onFieldSubmitted,
+    this.onEditingCompleted,
     this.validator,
     this.onSaved,
     this.autofocus = false,
@@ -49,6 +51,7 @@ class AppTextFromField extends StatelessWidget {
       validator: validator,
       onSaved: onSaved,
       onFieldSubmitted: onFieldSubmitted,
+      onEditingComplete: onEditingCompleted,
       autofocus: autofocus,
       textInputAction: inputAction,
       obscureText: this.obscureText,

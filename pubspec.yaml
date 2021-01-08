@@ -31,7 +31,10 @@ dependencies:
   flutter_swiper:
   cloud_firestore: ^0.12.9+4
   shared_preferences:
-
+  autocomplete_textfield:
+ 
+  
+  # firebase_storage: 
 dev_dependencies:
   flutter_test:
     sdk: flutter
